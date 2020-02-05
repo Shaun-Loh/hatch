@@ -1,0 +1,67 @@
+<html>
+	<head>
+
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+		<title>QuantSurvey</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+			table, th, td {
+
+				border: solid 1px #DDD;
+	            border-collapse: collapse;
+	            padding: 2px 3px;
+	            text-align: center;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id='testdpi' style='height: 1in; left: -100%; position: absolute; top: -100%; width: 1in;'></div>
+
+		<div style='display:block;position:absolute;margin-top:50px;margin-left:50px'>
+
+			<button onclick='newLine();return false;'>Start Polyline</button>
+	        <button onclick='eraseLayer( curRoom );return false;'>Clear Room</button>
+	        <button onclick='modeSelect();return false;'>Select Mode</button>
+
+<!--         {% if latest_question_list %}
+		    <ul>
+		    {% for question in latest_question_list %}
+		        <li><a href="{% url 'polls:detail' question.id %}" style = "color:blue">{{ question.question_text }}</a></li>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+		    <p>No polls are available.</p>
+		{% endif %} -->
+		<br>
+		<label for="scale">Scale 1:</label>
+		<input name ="scale" id= "scale" type="text" value="100">
+		<h2>Total area labelled: <span id = "totalarea"></span>m<sup>2</sup></h2>
+
+		</div>
+
+		<div style='display:block;position:absolute;margin-top:150px;margin-left:50'>
+			<input type="button" id="addRow" value="Add New Row" onclick="addRow()">
+			<table width="300px" id='userTable'>
+				<tr>
+					<th>Select Room</th>
+					<th>Room Type</th>
+					<th>Colour</th>
+					<th>Area</th>
+					<th></th>
+				</tr>
+		    </table>
+		    <button onclick='exportTableToCSV( "pricegauge.csv" );return false;'>Export Table to CSV File</button>
+		</div>
+
+	</body>
+
+	<script src= "{% static 'polls/THREE.js' %}"></script>
+	<script src= "{% static 'polls/docsetup.js' %}"></script>
+	<script src= "{% static 'polls/testjson.js' %}"></script>
+	<script src= "{% static 'polls/drawpoly.js' %}"></script>
+
+</html>
